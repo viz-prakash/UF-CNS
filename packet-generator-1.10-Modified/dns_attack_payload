@@ -1,0 +1,46 @@
+16 bit tranx id
+8400 or binary of this in 2 bytes
+#query count
+1 //use unsigned int for the integers
+#answer count
+2
+#number of name server records in authority section
+0
+#number of additional records
+0
+
+#question format
+#query domain name as sequence of labels, each label consist of length octet followed by number of octets
+random.dnsphishinglab.com eg: 3www14dnsphishinglab3com0 in memeory representation
+www\fdnsphishinglabcom\0
+#query type 1 for A(Host Address), other one is chaos
+1
+#query class 1 for IN, other is CNAME
+1
+
+#RR format answer 1
+random.dnsphishinglab.com //same as domain name in question format
+#type (CNAME)
+5
+#class (IN)
+1
+#TTL (0 caching not allowed)
+00 //32 bit should not be cached
+# RDLENGHT lenght of RDATA field including length octet
+12 //check it
+# RDLENGHT octets of name server name server whom we are poisioning
+www.dnsphishinglab.com
+
+# RR ans 2
+www.dnsphishinglab.com //same as other labels ending with 00
+1
+1
+00 //32 bit
+4
+1.2.3.4 //without dots
+
+# RR for name servers for authority section
+
+## RR for additional section
+
+

